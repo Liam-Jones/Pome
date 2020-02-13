@@ -1,0 +1,52 @@
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	display: inline;
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+a {
+	font-family: Arial;
+}
+
+/* SCROLL BAR
+ * ----------
+ * Not supported by Firefox, IE, or Edge
+ * Appears when items on page extend past the window's size */
+
+ ::-webkit-scrollbar {
+ 	width: 15px;
+ }
+
+::-webkit-scrollbar-track {
+	background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* COLUMNS */
+.column {
+	float: left;
+	height: 500px;
+	word-wrap: break-word;
+}

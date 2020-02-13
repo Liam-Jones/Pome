@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="test.js"></script>
+<script type="text/javascript" src="/js/test.js"></script>
 
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>POME</title>
 </head>
-<body>
-<p>Hello world</p>
+<body lang="en">
+
+<!-- NAVIGATION BAR -->
+<ul>
+    <li><a href="settings">Settings</a></li>
+    <li><a href="upload">Upload</a></li>
+    <li><a href="help">Help</a></li>
+</ul>
+
+<div class="container-fluid">
+
+    <div class="row border">
+        <div class="col-sm-2">
+
+            <p>My Tags<p>
+            <span id="myTags"></span>
+
+        </div>
+
+        <!-- put your content here -->
+        <div class="col-sm-10">
+
+            <p>My Images<p>
+            <div id="myImage"></div>
+
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
