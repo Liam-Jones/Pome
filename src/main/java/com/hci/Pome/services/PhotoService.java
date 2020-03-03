@@ -50,7 +50,7 @@ public class PhotoService {
 
     public Photo createOrUpdatePhoto(Photo entity) throws RecordNotFoundException
     {
-        Optional<Photo> photo = repository.findById(entity.getId());
+        Optional<Photo> photo = repository.findByPhotoName(entity.getPhotoName());
 
         if(photo.isPresent())
         {
