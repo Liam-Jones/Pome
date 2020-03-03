@@ -16,9 +16,9 @@ import javax.naming.NamingException;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class DataSourceConfiguration {
-
+/*
     private static final String TEMP_DIRECTORY = System.getProperty("java.io.tmpdir");
 
     @Bean(name = "mainDataSource")
@@ -31,5 +31,5 @@ public class DataSourceConfiguration {
         return ds;
 
     }
-
+*/
 }
