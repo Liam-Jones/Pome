@@ -1,6 +1,7 @@
 package com.hci.Pome.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -11,5 +12,10 @@ public class AlbumController {
     public String initialPage()
     {
         return "albumView";
+    }
+
+    @RequestMapping(value = "UploadPhoto", method = RequestMethod.POST)
+    public void uploadPhoto(String photoDetails) {
+
     }
 }
