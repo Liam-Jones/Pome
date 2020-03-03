@@ -8,7 +8,7 @@ import java.util.List;
 public class Photo {
     @Id
     @Column(name = "PhotoID")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue
     private Long photoId;
 
     @Column(name = "PhotoName")
@@ -27,6 +27,11 @@ public class Photo {
         this.photoName = photoName;
     }
 
+    public Photo(String photoName, List<Tag> tags) {
+        this.photoName = photoName;
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return String.format(
@@ -37,7 +42,19 @@ public class Photo {
         return photoId;
     }
 
-    public String getFirstName() {
+    public String getPhotoName() {
         return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
     }
 }

@@ -33,7 +33,11 @@ public class Tag {
         return tagId;
     }
 
-    public String getFirstName() {
+    public String getTagName() {
         return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }
