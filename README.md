@@ -4,4 +4,5 @@ POME (Picture Organization Made Easy) is a Web App that organizes images with ta
 COMP 3583 - HCI project 
 
 Group: Greg's Favourite Group
+
 Members: Maggie Perry, Liam Jones, Elianna McKinnon
