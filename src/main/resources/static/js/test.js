@@ -1,47 +1,117 @@
 $( document ).ready(function() {
  });
 // upload file
-$(function() {
-   $("#upload").change(function() {
-      if (this.files && this.files[0]) {
-          for (var i = 0; i < this.files.length; i++) {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[i]);
-          }
-      }
-   });
+/* The uploader form */
+/*$(function () {
+    $(":file").change(function () {
+        if (this.files && this.files[0]) {
+             var reader = new FileReader();
+
+             reader.onload = imageIsLoaded;
+             reader.readAsDataURL(this.files[0]);
+        }
+    });
 });
 
 function imageIsLoaded(e) {
-   $('#myImge').append('<img src=' + e.target.result + '>');
+    $('#myImg').attr('src', e.target.result);
 };
 
-/* Tag functions */
+// Image display
 
-var tags = ["tag1", "tag2", "tag3", "tag4", "tag5"];
+var pics = ["/images/1.png","images/2.png","images/3.jpeg","images/4.jpeg"];
 
-function add(name, tag) {
+function displayAllImages() {
+    for (var i = 1; i < pics.length; i++) {
 
-  //Create an input type dynamically.
-  var element = document.createElement("input");
+        var img = new Image();
+        img.url = pics[i];
+        img.style.width = '160px';
+        img.style.height = '120px';
 
-  //Assign button attributes.
-  element.setAttribute("type", "button");
-  element.setAttribute("value", tag);
-  element.setAttribute("name", name);
-
-  var tag = document.getElementById("myTags");
-
-  //Append the element in page (in span).
-  tag.appendChild(element);
-  tag.appendChild(document.createElement("br"));
-}
-window.onload = function iterator() {
-
-  for (var i in tags) {
-    if (tags.hasOwnProperty(i)) {
-      add(i, tags[i])
+        document.getElementById('images').appendChild(img);
     }
+};
+
+$(function() {
+    displayAllImages();
+});
+*/
+
+//var tags = ["tag1", "tag2", "tag3", "tag4", "tag5"];
+
+var tags = [];
+
+
+function add(tag) {
+         var button='<button class="btn btn-secondary">'+tag+'</button>&nbsp;';
+         $("#myTags").append(button).append("<br>");
+}
+
+window.onload = function iterator() {
+  // Upload, tag, and display functions
+  //Check File API support
+  if(window.File && window.FileList && window.FileReader){
+        var filesInput = document.getElementById("files");
+
+        filesInput.addEventListener("change", function(event){
+
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+
+            for(var i = 0; i< files.length; i++)
+            {
+                var file = files[i];
+
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+
+                var picReader = new FileReader();
+
+                var input = prompt("Please enter meaningful tags in a comma separated list.", "Tag1,Tag2,Tag3,...");
+
+                var newtags = input.split(',');
+
+                 // Generates tags
+                 for (var i = 0; i < newtags.length; i++) {
+
+                   tags.push(newtags[i]);
+                 }
+
+               // tags.concat(newtags);
+
+                console.log(tags);
+
+                alert(tags);
+
+                 // Generates tags
+                 for (var i = 0; i < tags.length; i++) {
+                   if (tags.hasOwnProperty(i)) {
+                      add(tags[i])
+                   }
+                 }
+
+                picReader.addEventListener("load",function(event){
+
+                    var picFile = event.target;
+
+                    var div = document.createElement("div");
+
+                    div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+
+                    output.insertBefore(div,null);
+
+                });
+
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }
+
+        });
+  }
+  else{
+        console.log("Your browser does not support File API");
   }
 }

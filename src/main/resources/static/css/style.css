@@ -50,3 +50,9 @@ a {
 	height: 500px;
 	word-wrap: break-word;
 }
+
+/*upload button*/
+
+[hidden] {
+  display: none !important;
+}

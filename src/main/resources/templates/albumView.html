@@ -16,18 +16,23 @@
 <body lang="en">
 
 <!-- NAVIGATION BAR -->
-<ul>
-    <li><a href="settings">Settings</a></li>
-    <li><a href="upload">Upload</a></li>
-    <li><a href="help">Help</a></li>
-</ul>
+<label class="btn btn-default">
+    Settings
+</label>
+
+<label class="btn btn-default">
+    Upload <input id="files" type="file" multiple, hidden/>
+</label>
+
+<label class="btn btn-default">
+    Help
+</label>
 
 <div class="container-fluid">
 
     <div class="row border">
         <div class="col-sm-2">
 
-            <p>My Tags<p>
             <span id="myTags"></span>
 
         </div>
@@ -35,8 +40,10 @@
         <!-- put your content here -->
         <div class="col-sm-10">
 
-            <p>My Images<p>
-            <div id="myImage"></div>
+            <!--<div class="backgoundImage">
+                <ul id="images"></ul>
+            </div> -->
+            <output id="result" />
 
         </div>
     </div>
