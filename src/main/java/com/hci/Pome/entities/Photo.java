@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Photo", schema="testdb")
+@Table(name = "Photo", schema = "testdb")
 public class Photo {
     @Id
     @Column(name = "PhotoID")
@@ -16,7 +16,7 @@ public class Photo {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-      name = "PhotoTag",
+      name = "PhotoTag", schema = "testdb",
       joinColumns = @JoinColumn(name = "PhotoID"), inverseJoinColumns = @JoinColumn(name = "TagID")
     )
     private List<Tag> tags;
