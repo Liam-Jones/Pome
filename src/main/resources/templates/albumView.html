@@ -49,6 +49,10 @@
             </div> -->
             <output id="result" />
 
+            <div th:each="photo : ${photos}">
+                <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:text="${photo.getPhotoName()}"></img>
+            </div>
+
         </div>
     </div>
 

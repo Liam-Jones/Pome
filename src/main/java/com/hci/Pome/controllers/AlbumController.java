@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import java.util.List;
 
@@ -20,17 +22,19 @@ public class AlbumController {
     PhotoService photoService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String initialPage()
+    public ModelAndView initialPage()
     {
-        /*
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("Photos", photoService.getAllPhotos());
-        modelAndView.setView("albumView");
+        List<Photo> photos = photoService.getAllPhotos();
+        for(Photo photo : photos)
+        {
+            photo.setPhotoName("images/" + photo.getPhotoName());
+        }
+        modelAndView.addObject("photos", photos);
+        modelAndView.setViewName("albumView");
 
-         */
-
-        return "albumView";
+        return modelAndView;
     }
 
     @RequestMapping(value = "/refresh", method = RequestMethod.GET)

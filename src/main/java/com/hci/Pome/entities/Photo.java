@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Photo", schema = "testdb")
+@Table(name = "Photo", schema = "testdb", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "PhotoName", name = "uniqueNameConstraint")})
 public class Photo {
     @Id
     @Column(name = "PhotoID")

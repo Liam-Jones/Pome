@@ -85,4 +85,19 @@ public class PhotoService {
             throw new RecordNotFoundException("No photo record exist for given id");
         }
     }
+
+    public void deletePhotoByPhotoName(String photoName) throws RecordNotFoundException
+    {
+        Optional<Photo> photo = repository.findByPhotoName(photoName);
+
+        if(photo.isPresent())
+        {
+            repository.deleteById(photo.get().getId());
+        }
+
+        else
+        {
+            throw new RecordNotFoundException("No photo record exist for given photo name");
+        }
+    }
 }

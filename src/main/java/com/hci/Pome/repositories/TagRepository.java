@@ -1,10 +1,12 @@
 package com.hci.Pome.repositories;
 
 import com.hci.Pome.entities.Photo;
+import com.hci.Pome.entities.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PhotoRepository extends JpaRepository<Photo, Long>, PhotoRepositoryCustom {
-    Optional<Photo> findByPhotoName(String photoName);
+
+public interface TagRepository extends JpaRepository<Tag, Long> {
+    Optional<Tag> findByTagName(String tagName);
 }
