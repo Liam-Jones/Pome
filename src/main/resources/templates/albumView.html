@@ -25,10 +25,6 @@
 </label>
 
 <label class="btn btn-default">
-    Refresh
-</label>
-
-<label class="btn btn-default">
     Help
 </label>
 
@@ -37,11 +33,13 @@
     <div class="row border">
         <div class="col-sm-2">
 
-            <span id="myTags" th:each="photo : ${photos}">
-
-                <button th:each="tag : ${photo.getTags()}" class="btn btn-secondary"
-                        th:text="${tag.getTagName()}"></button>
-                <br th:each="tag : ${photo.getTags()}">
+            <span id="myTags">
+                <span th:each="photo : ${photos}">
+                    <span th:each="tag : ${photo.getTags()}">
+                        <button class="btn btn-secondary tagEnabled" th:text="${tag.getTagName()}"></button>
+                        <br>
+                    </span>
+                </span>
             </span>
 
         </div>

@@ -1,5 +1,42 @@
 $( document ).ready(function() {
+
+    const wrapper = document.getElementById('myTags');
+
+    wrapper.addEventListener('click', (event) => {
+      const isButton = event.target.nodeName === 'BUTTON';
+      if (isButton) {
+        event.target.classList.toggle("tagEnabled");
+
+        var thumbnails = document.getElementsByClassName("thumbnail");
+        var tags = document.getElementsByClassName("tagEnabled");
+
+        for (i = 0; i < thumbnails.length; i++) {
+            var isEnabled = false;
+            for (j = 0; j < tags.length; j++) {
+              console.log(tags.item(j).innerHTML);
+              if(thumbnails[i].classList.contains(tags.item(j).innerHTML))
+              {
+                isEnabled = true
+              }
+            }
+
+            if(isEnabled == false)
+            {
+               thumbnails[i].style.visibility = 'hidden';
+            }
+            else
+            {
+               thumbnails[i].style.visibility = 'visible';
+            }
+
+        }
+      }
+
+      console.dir(event.target.id);
+    })
  });
+
+
 // upload file
 /* The uploader form */
 /*$(function () {
@@ -44,7 +81,7 @@ var tags = [];
 
 
 function add(tag) {
-         var button='<button class="btn btn-secondary">'+tag+'</button>&nbsp;';
+         var button='<button class="btn btn-secondary tagEnabled">'+tag+'</button>&nbsp;';
          $("#myTags").append(button).append("<br>");
 }
 
