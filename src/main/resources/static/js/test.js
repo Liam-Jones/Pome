@@ -22,11 +22,13 @@ $( document ).ready(function() {
 
             if(isEnabled == false)
             {
-               thumbnails[i].style.visibility = 'hidden';
+               thumbnails[i].parentElement.style.visibility = 'hidden';
+               thumbnails[i].parentElement.style.display = "none";
             }
             else
             {
-               thumbnails[i].style.visibility = 'visible';
+               thumbnails[i].parentElement.style.visibility = 'visible';
+               thumbnails[i].parentElement.style.display = "block";
             }
 
         }
