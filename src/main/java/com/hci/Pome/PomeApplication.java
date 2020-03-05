@@ -35,6 +35,8 @@ public class PomeApplication implements CommandLineRunner{
 		Photo crowPhoto = new Photo("CrowOfJudgement.jpg", crowTags);
 		Photo wiretapPhoto = new Photo("HeyWiretap.jpg", wiretapTags);
 
+		//dogePhoto.getTags().
+
 		photoService.createOrUpdatePhoto(dogePhoto);
 		photoService.createOrUpdatePhoto(crowPhoto);
 		photoService.createOrUpdatePhoto(wiretapPhoto);

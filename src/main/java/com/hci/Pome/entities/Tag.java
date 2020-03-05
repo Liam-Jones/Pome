@@ -31,8 +31,7 @@ public class Tag {
 
     @Override
     public String toString() {
-        return String.format(
-                "Tag[id=%d, photoName='%s']", tagId, tagName);
+        return tagName;
     }
 
     public Long getId() {

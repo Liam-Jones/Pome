@@ -37,7 +37,12 @@
     <div class="row border">
         <div class="col-sm-2">
 
-            <span id="myTags"></span>
+            <span id="myTags" th:each="photo : ${photos}">
+
+                <button th:each="tag : ${photo.getTags()}" class="btn btn-secondary"
+                        th:text="${tag.getTagName()}"></button>
+                <br th:each="tag : ${photo.getTags()}">
+            </span>
 
         </div>
 
@@ -50,7 +55,8 @@
             <output id="result" />
 
             <div th:each="photo : ${photos}">
-                <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:text="${photo.getPhotoName()}"></img>
+                    <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:text="${photo.getPhotoName()}"
+                          th:classappend="${photo.tagsToClasses()}"></img>
             </div>
 
         </div>

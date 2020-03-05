@@ -58,4 +58,15 @@ public class Photo {
     public List<Tag> getTags() {
         return tags;
     }
+
+    public String tagsToClasses()
+    {
+        StringBuffer sb = new StringBuffer();
+
+        for(int i = 0; i < tags.toArray().length; i++) {
+            sb.append(tags.toArray()[i].toString() + " ");
+        }
+
+        return sb.toString();
+    }
 }
