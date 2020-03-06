@@ -194,7 +194,7 @@
             <form id="post-form" class="post-form" method="post">
                 <output id="result"/>
             </form>
-            
+
             <div th:each="photo : ${photos}">
                     <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:text="${photo.getPhotoName()}"
                           th:classappend="${photo.tagsToClasses()}" style=width:25%;/>
