@@ -32,6 +32,7 @@ public class AlbumController {
             photo.setPhotoName("images/" + photo.getPhotoName());
         }
         modelAndView.addObject("photos", photos);
+        modelAndView.addObject("arrayLength", photos.toArray().length);
         modelAndView.setViewName("albumView");
 
         return modelAndView;

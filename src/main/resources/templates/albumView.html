@@ -191,23 +191,93 @@
 
             <output id="result" /> -->
 
+            <!--
             <form id="post-form" class="post-form" method="post">
                 <output id="result"/>
             </form>
 
+            -->
+
+            <!--
             <div th:each="photo : ${photos}">
                     <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:text="${photo.getPhotoName()}"
                           th:classappend="${photo.tagsToClasses()}" style=width:25%;/>
             </div>
+            -->
 
-            <!-- image grid bones -->
+            <form id="post-form" class="post-form" method="post">
+                 <div class="row" id="result">
+                    <div class="column" th:each="photo : ${photos}">
+                        <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:classappend="${photo.tagsToClasses()}">
+                    </div>
+                </div>
+            </form>
+
+            <!-- th:each="star:${#numbers.sequence(0,obj.stars)}"-->
+
+            <!--
+            <div class="row" th:each="index : ${#numbers.sequence(0, arrayLength, 3)}">
+
+                <div class="column" th:each="index : ${#numbers.sequence(0, index2)}">
+                -->
+
+            <!--
             <div class="row">
                 <div class="column">
-                    <img src="/images/irl_pics/animal1.jpg" style="width=25%">
-                    <img src="/images/irl_pics/animal2.jpg" style="width=25%">
-                    <img src="/images/irl_pics/animal3.jpg" style="width=25%">
+                    <img src="wedding.jpg">
+                    <img src="rocks.jpg">
+                    <img src="falls2.jpg">
+                    <img src="paris.jpg">
+                    <img src="nature.jpg">
+                    <img src="mist.jpg">
+                    <img src="paris.jpg">
+                </div>
+                <div class="column">
+                    <img src="underwater.jpg">
+                    <img src="ocean.jpg">
+                    <img src="wedding.jpg">
+                    <img src="mountainskies.jpg">
+                    <img src="rocks.jpg">
+                    <img src="underwater.jpg">
+                </div>
+                <div class="column">
+                    <img src="wedding.jpg">
+                    <img src="rocks.jpg">
+                    <img src="falls2.jpg">
+                    <img src="paris.jpg">
+                    <img src="nature.jpg">
+                    <img src="mist.jpg">
+                    <img src="paris.jpg">
+                </div>
+                <div class="column">
+                    <img src="underwater.jpg">
+                    <img src="ocean.jpg">
+                    <img src="wedding.jpg">
+                    <img src="mountainskies.jpg">
+                    <img src="rocks.jpg">
+                    <img src="underwater.jpg">
                 </div>
             </div>
+            -->
+
+            <!--
+            <table th:if="${yourList.length > 0}">
+                <tr th:each="${index: #numbers.sequence(0, yourList.length, 3)}">
+                    <td th:text="${yourList[index]}"></td>
+                    <td><div th:if="${yourList[index + 1] != null}" th:text="${yourList[index + 1]}" th:remove="tag"></div></td>
+                    <td><div th:if="${yourList[index + 2] != null}" th:text="${yourList[index + 2]}" th:remove="tag"></div></td>
+                </tr>
+                -->
+
+            <!-- image grid bones
+            <div class="row">
+                <div class="column">
+                    <img src="/images/animal1.jpg" style="width=25%">
+                    <img src="/images/animal2.jpg" style="width=25%">
+                    <img src="/images/animal3.jpg" style="width=25%">
+                </div>
+            </div>
+            -->
 
         </div>
     </div>

@@ -136,9 +136,17 @@ window.onload = function iterator() {
                     var picFile = event.target;
 
                     var div = document.createElement("div");
+                    div.classList.add("column");
+                    div.classList.add("galleryPhoto");
+
+                    for (var i = 0; i < tags.length; i++) {
+                      if (tags.hasOwnProperty(i)) {
+                         div.classList.add(tags[i])
+                      }
+                    }
 
                     div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
-                            "title='" + picFile.name + "' style='width:25%;'/>";
+                            "title='" + picFile.name + "'/>";
 
                     output.insertBefore(div,null);
 
