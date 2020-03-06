@@ -89,7 +89,7 @@ function add(tag) {
 
 window.onload = function iterator() {
   // Upload, tag, and display functions
-  //Check File API support
+  // Check File API support
   if(window.File && window.FileList && window.FileReader){
         var filesInput = document.getElementById("files");
 
@@ -102,9 +102,9 @@ window.onload = function iterator() {
             {
                 var file = files[i];
 
-                //Only pics
+                // Verifies image is a file type
                 if(!file.type.match('image'))
-                  continue;
+                    continue;
 
                 var picReader = new FileReader();
 
@@ -138,7 +138,7 @@ window.onload = function iterator() {
                     var div = document.createElement("div");
 
                     div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
-                            "title='" + picFile.name + "'/>";
+                            "title='" + picFile.name + "' style='width:25%;'/>";
 
                     output.insertBefore(div,null);
 

@@ -1,29 +1,166 @@
 <!DOCTYPE html>
+<!-- thymeleaf, jquery, bootstrap -->
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
-<link rel="stylesheet" type="text/css" href="/css/style.css"/>
-
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/test.js"></script>
 
+<!-- link to test.js & style.css -->
+<script type="text/javascript" src="/js/test.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+<!-- fancy fonts -->
+<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="/css/style.css">
+<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="/css/style.css">
+
+<!-- css code here for now -->
+<style>
+    /* HEADER */
+    header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+        background: #FB6A8B;
+        color: white;
+        height: 300px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Corben', Georgia, Times, serif;
+        font-size: 60px;
+    }
+    p, div {
+        font-family: 'Nobile', Helvetica, Arial, sans-serif;
+        font-size: 20px;
+    }
+
+    body {
+        font-family: Calibri, "Calibri Light", serif;
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        display: inline;
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    a {
+        font-family: Arial;
+    }
+
+    /* SCROLL BAR
+     * ----------
+     * Not supported by Firefox, IE, or Edge
+     * Appears when items on page extend past the window's size */
+
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #000000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* COLUMNS
+    .column {
+        float: left;
+        height: 500px;
+        word-wrap: break-word;
+    }*/
+
+    /* UPLOAD BUTTON*/
+
+    [hidden] {
+        display: none !important;
+    }
+
+    /* IMAGE GRID */
+    .row {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+        padding: 0 4px;
+    }
+
+    /* Create four equal columns that sits next to each other */
+    .column {
+        -ms-flex: 25%; /* IE10 */
+        flex: 25%;
+        max-width: 25%;
+        padding: 0 4px;
+    }
+
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    /* Responsive layout - makes a two column-layout instead of four columns */
+    @media screen and (max-width: 800px) {
+        .column {
+            -ms-flex: 50%;
+            flex: 50%;
+            max-width: 50%;
+        }
+    }
+
+    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+        .column {
+            -ms-flex: 100%;
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+</style>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>POME</title>
 </head>
 <body lang="en">
 
+<!-- POME HEADER -->
+<header>
+    <img src="/images/pome_logo.png" alt="POME logo" width="100">
+    <h1>POME</h1>
+    <p>Picture Organization Made Easy</p>
+</header>
+
 <!-- NAVIGATION BAR -->
 <label class="btn btn-default">
     Settings
 </label>
-
 <label class="btn btn-default">
     Upload <input id="files" type="file" multiple, hidden/>
 </label>
-
 <label class="btn btn-default">
     Help
 </label>
@@ -49,12 +186,27 @@
 
             <!--<div class="backgoundImage">
                 <ul id="images"></ul>
-            </div> -->
-            <output id="result" />
+            </div>
 
+
+            <output id="result" /> -->
+
+            <form id="post-form" class="post-form" method="post">
+                <output id="result"/>
+            </form>
+            
             <div th:each="photo : ${photos}">
                     <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:text="${photo.getPhotoName()}"
-                          th:classappend="${photo.tagsToClasses()}"></img>
+                          th:classappend="${photo.tagsToClasses()}" style=width:25%;/>
+            </div>
+
+            <!-- image grid bones -->
+            <div class="row">
+                <div class="column">
+                    <img src="/images/irl_pics/animal1.jpg" style="width=25%">
+                    <img src="/images/irl_pics/animal2.jpg" style="width=25%">
+                    <img src="/images/irl_pics/animal3.jpg" style="width=25%">
+                </div>
             </div>
 
         </div>
