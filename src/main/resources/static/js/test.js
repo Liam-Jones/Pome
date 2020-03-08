@@ -37,49 +37,110 @@ $( document ).ready(function() {
       }
 
       console.dir(event.target.id);
-    })
+    });
+
+
+
+
+
+    var editMode = false;
+
+    const edit = document.getElementById('edit');
+
+    edit.addEventListener('click', event => {
+        edit.classList.toggle("btn-default");
+        edit.classList.toggle("btn-info");
+        edit.classList.toggle("editEnabled");
+
+        if (edit.classList.contains("editEnabled"))
+        {
+            editMode = true;
+        }
+
+        else
+        {
+            editMode = false;
+        }
+    });
+
+
+
+    const modal = document.getElementById("editModal");
+    const result = document.getElementById('result');
+    const editImageTags = document.getElementById('editImageTags');
+    const submitTags = document.getElementById('submitTags');
+
+
+    result.addEventListener('click', event => {
+
+        const isImage = event.target.nodeName === 'IMG';
+
+        if (isImage && editMode) {
+            var imageTags = event.target.classList;
+            event.target.parentElement.classList.toggle("selectedImage");
+            editImageTags.defaultValue = imageTags;
+
+            modal.style.display = "block";
+        }
+    });
+
+    submitTags.onclick = function() {
+        var selectedImage = document.getElementsByClassName("selectedImage")[0].getElementsByTagName('img')[0];
+
+        var oldTagsList = [selectedImage.classList][0];
+        var newTagsList = editImageTags.value.split(' ');
+
+
+        for (var i = 0; i< oldTagsList.length; i++)
+        {
+            var removedTag = String(oldTagsList[i]);
+            selectedImage.classList.remove(removedTag);
+
+            var remainingImages = result.getElementsByClassName(removedTag);
+
+            if (remainingImages.length === 0)
+            {
+                var unusedTag = document.getElementById("myTags").getElementsByClassName(removedTag)[0];
+
+                unusedTag.parentElement.removeChild(unusedTag);
+            }
+        }
+
+        for (var i = 0; i< newTagsList.length; i++)
+        {
+            selectedImage.classList.add(newTagsList[i]);
+        }
+
+        //selectedImage.getElementsByTagName('img').classList = editImageTags.value;
+    }
+
+    document.getElementById('removeImage').onclick = function() {
+        var selectedImage = document.getElementsByClassName("selectedImage")[0];
+
+        selectedImage.parentElement.removeChild(selectedImage);
+        modal.style.display = "none";
+    }
+
+    document.getElementById('close').onclick = function() {
+      var selectedImage = document.getElementsByClassName("selectedImage")[0];
+      selectedImage.classList.toggle("selectedImage");
+
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        var selectedImage = document.getElementsByClassName("selectedImage")[0];
+        selectedImage.classList.toggle("selectedImage");
+
+        modal.style.display = "none";
+      }
+    }
+
  });
 
 
-// upload file
-/* The uploader form */
-/*$(function () {
-    $(":file").change(function () {
-        if (this.files && this.files[0]) {
-             var reader = new FileReader();
 
-             reader.onload = imageIsLoaded;
-             reader.readAsDataURL(this.files[0]);
-        }
-    });
-});
-
-function imageIsLoaded(e) {
-    $('#myImg').attr('src', e.target.result);
-};
-
-// Image display
-
-var pics = ["/images/1.png","images/2.png","images/3.jpeg","images/4.jpeg"];
-
-function displayAllImages() {
-    for (var i = 1; i < pics.length; i++) {
-
-        var img = new Image();
-        img.url = pics[i];
-        img.style.width = '160px';
-        img.style.height = '120px';
-
-        document.getElementById('images').appendChild(img);
-    }
-};
-
-$(function() {
-    displayAllImages();
-});
-*/
-
-//var tags = ["tag1", "tag2", "tag3", "tag4", "tag5"];
 
 
 
