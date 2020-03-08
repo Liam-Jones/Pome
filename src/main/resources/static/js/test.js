@@ -6,6 +6,8 @@ $( document ).ready(function() {
       const isButton = event.target.nodeName === 'BUTTON';
       if (isButton) {
         event.target.classList.toggle("tagEnabled");
+        event.target.classList.toggle("btn-secondary");
+        event.target.classList.toggle("btn-info");
 
         var thumbnails = document.getElementsByClassName("thumbnail");
         var tags = document.getElementsByClassName("tagEnabled");
@@ -79,12 +81,24 @@ $(function() {
 
 //var tags = ["tag1", "tag2", "tag3", "tag4", "tag5"];
 
-var tags = [];
+
 
 
 function add(tag) {
-         var button='<button class="btn btn-secondary tagEnabled">'+tag+'</button>&nbsp;';
-         $("#myTags").append(button).append("<br>");
+         var nodeListLength = document.getElementById("myTags").getElementsByClassName(tag).length;
+         if(nodeListLength === 0)
+         {
+             var button = document.createElement("BUTTON");
+             button.innerHTML = tag;
+             button.classList.add("btn");
+             button.classList.add("btn-info");
+             button.classList.add("tagEnabled");
+             button.classList.add(tag);
+             //var button='<button class="btn btn-info tagEnabled">'+tag+'</button>&nbsp;'
+             //button.classList.add(tag);
+             $("#myTags").append(button).append("<br>");
+         }
+
 }
 
 window.onload = function iterator() {
@@ -93,7 +107,10 @@ window.onload = function iterator() {
   if(window.File && window.FileList && window.FileReader){
         var filesInput = document.getElementById("files");
 
+
         filesInput.addEventListener("change", function(event){
+
+            var tags = [];
 
             var files = event.target.files; //FileList object
             var output = document.getElementById("result");
@@ -139,14 +156,20 @@ window.onload = function iterator() {
                     div.classList.add("column");
                     div.classList.add("galleryPhoto");
 
+                    var tagsList = "";
+
                     for (var i = 0; i < tags.length; i++) {
                       if (tags.hasOwnProperty(i)) {
                          div.classList.add(tags[i])
+                         tagsList += tags[i] + " "
                       }
                     }
 
-                    div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                    //div.prepend($('<img>',{id:'theImg',src:'theImg.png'}))
+
+                    div.innerHTML = "<img class='thumbnail " + tagsList + "'" + "src='" + picFile.result + "'" +
                             "title='" + picFile.name + "'/>";
+
 
                     output.insertBefore(div,null);
 
