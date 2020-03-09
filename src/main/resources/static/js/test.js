@@ -76,7 +76,8 @@ $( document ).ready(function() {
         const isImage = event.target.nodeName === 'IMG';
 
         if (isImage && editMode) {
-            var imageTags = event.target.classList;
+            var imageTags = Array.from([event.target.classList][0]);
+            imageTags = imageTags.filter(e => e !== 'thumbnail');
             event.target.parentElement.classList.toggle("selectedImage");
             editImageTags.value = imageTags;
 
@@ -88,7 +89,7 @@ $( document ).ready(function() {
         var selectedImage = document.getElementsByClassName("selectedImage")[0].getElementsByTagName('img')[0];
 
         const oldTagsList = Array.from([selectedImage.classList][0]);
-        var newTagsList = editImageTags.value.split(' ');
+        var newTagsList = editImageTags.value.split(',');
 
 
         for (var i = 0; i< oldTagsList.length; i++)
@@ -116,11 +117,14 @@ $( document ).ready(function() {
 
         for (var i = 0; i< newTagsList.length; i++)
         {
-            selectedImage.classList.add(newTagsList[i]);
-            add(newTagsList[i]);
+            if (newTagsList[i] != "")
+            {
+                selectedImage.classList.add(newTagsList[i]);
+                add(newTagsList[i]);
+            }
         }
 
-        //selectedImage.getElementsByTagName('img').classList = editImageTags.value;
+        selectedImage.classList.add('thumbnail');
     }
 
     document.getElementById('removeImage').onclick = function() {
