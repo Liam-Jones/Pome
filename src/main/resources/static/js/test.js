@@ -128,9 +128,36 @@ $( document ).ready(function() {
     }
 
     document.getElementById('removeImage').onclick = function() {
-        var selectedImage = document.getElementsByClassName("selectedImage")[0];
+        var selectedImageColumn = document.getElementsByClassName("selectedImage")[0];
+        var selectedImage = document.getElementsByClassName("selectedImage")[0].getElementsByTagName('img')[0];
 
-        selectedImage.parentElement.removeChild(selectedImage);
+
+        const oldTagsList = Array.from([selectedImage.classList][0]);
+
+        for (var i = 0; i< oldTagsList.length; i++)
+        {
+            var removedTag = String(oldTagsList[i]);
+            selectedImage.classList.remove(removedTag);
+
+            var remainingImages = result.getElementsByClassName(removedTag);
+
+            if (remainingImages.length === 0)
+            {
+                var unusedTag = document.getElementById("myTags").getElementsByClassName(removedTag)[0];
+
+                var elementToBeRemoved = null;
+
+                if (typeof unusedTag !== 'undefined') {
+                    elementToBeRemoved = unusedTag.parentElement.parentElement;
+                }
+
+                if (elementToBeRemoved != null) {
+                    elementToBeRemoved.parentElement.removeChild(elementToBeRemoved);
+                }
+            }
+        }
+
+        selectedImageColumn.parentElement.removeChild(selectedImageColumn);
         modal.style.display = "none";
     }
 
@@ -159,18 +186,26 @@ $( document ).ready(function() {
 
 
 function add(tag) {
-         var nodeListLength = document.getElementById("myTags").getElementsByClassName(tag).length;
+         const tagsContainer = document.getElementById("myTags");
+
+         var nodeListLength = tagsContainer.getElementsByClassName(tag).length;
          if(nodeListLength === 0)
          {
+             var span = document.createElement("SPAN");
+             var span2 = document.createElement("SPAN");
+             var lineBreak = document.createElement("BR");
+
              var button = document.createElement("BUTTON");
              button.innerHTML = tag;
              button.classList.add("btn");
              button.classList.add("btn-info");
              button.classList.add("tagEnabled");
              button.classList.add(tag);
-             //var button='<button class="btn btn-info tagEnabled">'+tag+'</button>&nbsp;'
-             //button.classList.add(tag);
-             $("#myTags").append(button).append("<br>");
+
+             tagsContainer.append(span);
+             span.append(span2);
+             span2.append(button);
+             button.append(lineBreak);
          }
 
 }
