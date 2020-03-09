@@ -78,7 +78,7 @@ $( document ).ready(function() {
         if (isImage && editMode) {
             var imageTags = event.target.classList;
             event.target.parentElement.classList.toggle("selectedImage");
-            editImageTags.defaultValue = imageTags;
+            editImageTags.value = imageTags;
 
             modal.style.display = "block";
         }
@@ -87,7 +87,7 @@ $( document ).ready(function() {
     submitTags.onclick = function() {
         var selectedImage = document.getElementsByClassName("selectedImage")[0].getElementsByTagName('img')[0];
 
-        var oldTagsList = [selectedImage.classList][0];
+        const oldTagsList = Array.from([selectedImage.classList][0]);
         var newTagsList = editImageTags.value.split(' ');
 
 
@@ -102,13 +102,22 @@ $( document ).ready(function() {
             {
                 var unusedTag = document.getElementById("myTags").getElementsByClassName(removedTag)[0];
 
-                unusedTag.parentElement.removeChild(unusedTag);
+                var elementToBeRemoved = null;
+
+                if (typeof unusedTag !== 'undefined') {
+                    elementToBeRemoved = unusedTag.parentElement.parentElement;
+                }
+
+                if (elementToBeRemoved != null) {
+                    elementToBeRemoved.parentElement.removeChild(elementToBeRemoved);
+                }
             }
         }
 
         for (var i = 0; i< newTagsList.length; i++)
         {
             selectedImage.classList.add(newTagsList[i]);
+            add(newTagsList[i]);
         }
 
         //selectedImage.getElementsByTagName('img').classList = editImageTags.value;
