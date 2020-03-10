@@ -30,16 +30,28 @@ public class PomeApplication implements CommandLineRunner{
 		List<Tag> dogeTags = Arrays.asList(new Tag("Doge"), new Tag("MuchSurprise"));
 		List<Tag> crowTags = Arrays.asList(new Tag("Crow"), new Tag("JUDGEMENT"));
 		List<Tag> wiretapTags = Arrays.asList(new Tag("Wiretap"));
+		List<Tag> catTags = Arrays.asList(new Tag("Cat"));
+		List<Tag> deerTags = Arrays.asList(new Tag("Deer"));
+		List<Tag> acadia1Tags = Arrays.asList(new Tag("Acadia_Hill"));
+		List<Tag> acadia2Tags = Arrays.asList(new Tag("Acadia_Path"), new Tag("Vertical"));
 
 		Photo dogePhoto = new Photo("doge.jpg", dogeTags);
 		Photo crowPhoto = new Photo("CrowOfJudgement.jpg", crowTags);
 		Photo wiretapPhoto = new Photo("HeyWiretap.jpg", wiretapTags);
+		Photo catPhoto = new Photo("animal1.jpg", catTags);
+		Photo deerPhoto = new Photo("animal2.jpg", deerTags);
+		Photo acadia1Photo = new Photo("acadia1.jpg", acadia1Tags);
+		Photo acadia2Photo = new Photo("acadia2.jpg", acadia2Tags);
 
 		//dogePhoto.getTags().
 
 		photoService.createOrUpdatePhoto(dogePhoto);
-		photoService.createOrUpdatePhoto(crowPhoto);
 		photoService.createOrUpdatePhoto(wiretapPhoto);
+		photoService.createOrUpdatePhoto(catPhoto);
+		photoService.createOrUpdatePhoto(deerPhoto);
+		photoService.createOrUpdatePhoto(acadia1Photo);
+		photoService.createOrUpdatePhoto(crowPhoto);
+		photoService.createOrUpdatePhoto(acadia2Photo);
 
 
 		//Todo: Enforce uniqueness

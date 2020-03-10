@@ -6,8 +6,7 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- link to test.js & style.css -->
-<script type="text/javascript" src="/js/test.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+<script type="text/javascript" src="/js/script.js"></script>
 
 <!-- fancy fonts -->
 <link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="/css/style.css">
@@ -22,13 +21,24 @@
         text-align: center;
         background: #FB6A8B;
         color: white;
-        height: 300px;
+        height: 250px;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1 {
         font-family: 'Corben', Georgia, Times, serif;
         font-size: 60px;
     }
+
+    h2 {
+        font-family: 'Corben', Georgia, Times, serif;
+        font-size: 40px;
+    }
+
+    h3 {
+        font-family: 'Corben', Georgia, Times, serif;
+        font-size: 30px;
+    }
+
     p, div {
         font-family: 'Nobile', Helvetica, Arial, sans-serif;
         font-size: 20px;
@@ -37,6 +47,7 @@
     body {
         font-family: Calibri, "Calibri Light", serif;
         margin: 0;
+        background-image: url("/images/bg/grid_bg.gif");
     }
 
     ul {
@@ -85,13 +96,6 @@
         background: #555;
     }
 
-    /* COLUMNS
-    .column {
-        float: left;
-        height: 500px;
-        word-wrap: break-word;
-    }*/
-
     /* UPLOAD BUTTON*/
 
     [hidden] {
@@ -107,7 +111,7 @@
         padding: 0 4px;
     }
 
-    /* Create four equal columns that sits next to each other */
+    /* four columns */
     .column {
         -ms-flex: 25%; /* IE10 */
         flex: 25%;
@@ -121,7 +125,7 @@
         width: 100%;
     }
 
-    /* Responsive layout - makes a two column-layout instead of four columns */
+    /* transforms to two columns from four columns */
     @media screen and (max-width: 800px) {
         .column {
             -ms-flex: 50%;
@@ -130,7 +134,7 @@
         }
     }
 
-    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+    /* two columns stacking on top of each other */
     @media screen and (max-width: 600px) {
         .column {
             -ms-flex: 100%;
@@ -139,46 +143,70 @@
         }
     }
 
-     /* Modal Header */
-
-    .modal-header {
-      padding: 2px 16px;
-      background-color: #5cb85c;
-      color: white;
+    /* modal bg */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
     }
 
-    /* Modal Body */
+    /* modal content for nav bar */
+    .nav-modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 5px;
+        border: 1px solid #888;
+        width: 50%;
+
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* close buttons for nav bar modals */
+    .aboutClose, .helpClose, .editClose {
+        color: #ffffff;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .aboutClose:hover, .helpClose:hover, .editClose:hover, .aboutClose:focus, helpClose:focus, .editClose:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* header for nav bar modals */
+    .modal-header {
+        padding: 2px 16px;
+        background-color: #239EAF;
+        color: white;
+    }
+
+    /* modal body for edit button modal */
     .modal-body {padding: 2px 16px;}
 
-    /* Modal Footer */
-    .modal-footer {
-      padding: 2px 16px;
-      background-color: #5cb85c;
-      color: white;
-    }
-
-    /* Modal Content */
-    .modal-content {
-      position: relative;
-      background-color: #fefefe;
-      margin: auto;
-      padding: 0;
-      border: 1px solid #888;
-      width: 80%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-      animation-name: animatetop;
-      animation-duration: 0.4s
-    }
-
-    /* Add Animation */
+    /* animation for edit button modal */
     @keyframes animatetop {
-      from {top: -300px; opacity: 0}
-      to {top: 0; opacity: 1}
+        from {top: -300px; opacity: 0}
+        to {top: 0; opacity: 1}
     }
-
 </style>
 
 <head>
+    <!-- POME favicon -->
+    <link rel="shortcut icon" href="/images/pome_logo.png" type="image/png" sizes="16x16">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>POME</title>
@@ -187,23 +215,25 @@
 
 <!-- POME HEADER -->
 <header>
-    <img src="/images/pome_logo.png" alt="POME logo" width="100">
-    <h1>POME</h1>
+    <img src="/images/pome_word.png" alt="POME word" width="350">
+    <img src="/images/pome_logo.png" alt="POME logo" width="130">
     <p>Picture Organization Made Easy</p>
 </header>
 
 <!-- NAVIGATION BAR -->
+<!-- about, settings, upload, help-->
 <label class="btn btn-default">
-    Settings
+    <div id="aboutButton" title="Learn more about POME">About</div>
 </label>
 <label class="btn btn-default">
-    Upload <input id="files" type="file" multiple, hidden/>
+    <div title="Upload an image">Upload</div>
+    <input id="files" type="file" multiple, hidden/>
 </label>
 <label id="edit" class="btn btn-default">
-    Edit
+    <div title="Remove photos and tags">Edit</div>
 </label>
 <label class="btn btn-default">
-    Help
+    <div id="helpButton" title="How to use POME">Help</div>
 </label>
 
 <div class="container-fluid">
@@ -225,16 +255,23 @@
         <!-- put your content here -->
         <div class="col-sm-10">
 
-
-
-            <!-- The Modal -->
-            <div id="editModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
+            <!-- about button modal -->
+            <div id="aboutModal" class="modal">
+                <div class="nav-modal-content">
                     <div class="modal-header">
-                        <span id="close">&times;</span>
-                        <h2>Modal Header</h2>
+                        <span class="aboutClose">&times;</span>
+                    </div>
+                    <h2>Welcome to POME!</h2>
+                    <p>POME (Picture Organization Made Easy) is a web app that organizes images with tags as a way for you to easily store and locate your media.</p>
+                    <p>Feel free to upload photos using the Upload button, and if you need help you can find instructions by clicking on the Help button.</p>
+                </div>
+            </div>
+
+            <!-- edit button modal -->
+            <div id="editModal" class="modal">
+                <div class="nav-modal-content">
+                    <div class="modal-header">
+                        <span class="editClose">&times;</span>
                     </div>
                     <div class="modal-body">
                         <input id="editImageTags">
@@ -242,16 +279,42 @@
                         <br>
                         <button id="removeImage" type="button" class="btn btn-danger">Remove Image</button>
                     </div>
-                    <div class="modal-footer">
-                        <h3>Modal Footer</h3>
+                </div>
+            </div>
+
+            <!-- help button modal -->
+            <div id="helpModal" class="modal">
+                <div class="nav-modal-content">
+                    <div class="modal-header">
+                        <span class="helpClose">&times;</span>
                     </div>
+                    <h2>How to...</h2>
+                    <hr>
+                    <h3>Upload images & tags</h3>
+                    <p>Images can be uploaded by clicking on the Upload button on the navigation bar. It will prompt you to select an image from your computer.</p>
+                    <p>After selecting an image an additional prompt will appear to add one or more tags to your image. Multiple tags must be typed between commas without spaces.</p>
+                    <img src="/images/help_imgs/adding_tags.jpg" alt="adding tags in POME">
+                    <hr>
+                    <h3>Remove images & tags</h3>
+                    <p>Images can be removed by clicking on the Edit button on the navigation bar. You can also remove or add tags to a previously uploaded image using this feature.</p>
+                    <p>After clicking on Edit the button is highlighted, then click on the image you wish to edit and a window will appear that will allow you to edit its tags or remove the image.</p>
+                    <p>You can add tags by typing new tags in the input field, and remove tags by deleting present tags in the field. Confirm your tags by pressing Edit Tags.</p>
+                    <img src="/images/help_imgs/edit.jpg" alt="editing photos/tags in POME">
+                    <img src="/images/help_imgs/edit_tags.jpg" alt="editing photos/tags in POME">
+                    <hr>
+                    <h3>Select or deselect tags to view images</h3>
+                    <p>On the main page you can click on tags to view images with those tags, or deselect tags to hide images from view.</p>
+                    <p>Selected tags are saturated in blue, while deselected tags are desaturated in grey.</p>
+                    <p>Images with more than one tag will hide only if all its tags are deselected.</p>
+                    <img src="/images/help_imgs/tags.jpg" alt="selecting/deselecting tags in POME">
+
                 </div>
             </div>
 
 
 
             <form id="post-form" class="post-form" method="post">
-                 <div class="row" id="result">
+                <div class="row" id="result">
                     <div class="column" th:each="photo : ${photos}">
                         <img class="thumbnail" th:src="@{${photo.getPhotoName()}}" th:classappend="${photo.tagsToClasses()}">
                     </div>
@@ -262,6 +325,67 @@
     </div>
 
 </div>
+
+<script>
+    //------------------
+    // ABOUT BUTTON MODAL
+    //------------------
+    var a_modal = document.getElementById("aboutModal");
+    var a_btn = document.getElementById("aboutButton");
+    var a_span = document.getElementsByClassName("aboutClose")[0];
+
+    // opens modal when "about" clicked on
+    a_btn.onclick = function() {
+        a_modal.style.display = "block";
+    }
+
+    // closes modal when "x" icon clicked on
+    a_span.onclick = function() {
+        a_modal.style.display = "none";
+    }
+
+    // closes modal when anywhere outside it is clicked
+    window.onclick = function(event) {
+        if (event.target == a_modal) {
+            a_modal.style.display = "none";
+        }
+    }
+
+    //------------------
+    // EDIT BUTTON MODAL for closing the window
+    //------------------
+    var e_modal = document.getElementById("editModal");
+    var e_span = document.getElementsByClassName("editClose")[0];
+
+    // closes modal when "x" icon clicked on
+    e_span.onclick = function() {
+        e_modal.style.display = "none";
+    }
+
+    //------------------
+    // HELP BUTTON MODAL
+    //------------------
+    var h_modal = document.getElementById("helpModal");
+    var h_btn = document.getElementById("helpButton");
+    var h_span = document.getElementsByClassName("helpClose")[0];
+
+    // opens modal when "help" clicked on
+    h_btn.onclick = function() {
+        h_modal.style.display = "block";
+    }
+
+    // closes modal when "x" icon clicked on
+    h_span.onclick = function() {
+        h_modal.style.display = "none";
+    }
+
+    // closes modal when anywhere outside it is clicked
+    window.onclick = function(event) {
+        if (event.target == h_modal) {
+            h_modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>
