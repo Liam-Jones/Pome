@@ -27,31 +27,35 @@ public class PomeApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<Tag> dogeTags = Arrays.asList(new Tag("Doge"), new Tag("MuchSurprise"));
-		List<Tag> crowTags = Arrays.asList(new Tag("Crow"), new Tag("JUDGEMENT"));
+		List<Tag> dogeTags = Arrays.asList(new Tag("Doge"));
+		List<Tag> crowTags = Arrays.asList(new Tag("Crow"));
 		List<Tag> wiretapTags = Arrays.asList(new Tag("Wiretap"));
 		List<Tag> catTags = Arrays.asList(new Tag("Cat"));
-		List<Tag> deerTags = Arrays.asList(new Tag("Deer"));
 		List<Tag> acadia1Tags = Arrays.asList(new Tag("Acadia_Hill"));
-		List<Tag> acadia2Tags = Arrays.asList(new Tag("Acadia_Path"), new Tag("Vertical"));
+		List<Tag> sky1Tags = Arrays.asList(new Tag("Purple_Sky"));
+		List<Tag> flower1Tags = Arrays.asList(new Tag("Yellow_Flower"));
+		List<Tag> vector1Tags = Arrays.asList(new Tag("Brain_Drawing"));
+		List<Tag> ls2Tags = Arrays.asList(new Tag("Beach"));
 
 		Photo dogePhoto = new Photo("doge.jpg", dogeTags);
 		Photo crowPhoto = new Photo("CrowOfJudgement.jpg", crowTags);
 		Photo wiretapPhoto = new Photo("HeyWiretap.jpg", wiretapTags);
 		Photo catPhoto = new Photo("animal1.jpg", catTags);
-		Photo deerPhoto = new Photo("animal2.jpg", deerTags);
 		Photo acadia1Photo = new Photo("acadia1.jpg", acadia1Tags);
-		Photo acadia2Photo = new Photo("acadia2.jpg", acadia2Tags);
+		Photo sky1Photo = new Photo("sky2.jpg", sky1Tags);
+		Photo flower1Photo = new Photo("flower2.jpg", flower1Tags);
+		Photo vector1Photo = new Photo("brain_vector.jpg", vector1Tags);
+		Photo ls2Photo = new Photo("landscape3.jpg", ls2Tags);
 
-		//dogePhoto.getTags().
-
+		photoService.createOrUpdatePhoto(catPhoto);
 		photoService.createOrUpdatePhoto(dogePhoto);
 		photoService.createOrUpdatePhoto(wiretapPhoto);
-		photoService.createOrUpdatePhoto(catPhoto);
-		photoService.createOrUpdatePhoto(deerPhoto);
 		photoService.createOrUpdatePhoto(acadia1Photo);
 		photoService.createOrUpdatePhoto(crowPhoto);
-		photoService.createOrUpdatePhoto(acadia2Photo);
+		photoService.createOrUpdatePhoto(sky1Photo);
+		photoService.createOrUpdatePhoto(vector1Photo);
+		photoService.createOrUpdatePhoto(ls2Photo);
+		photoService.createOrUpdatePhoto(flower1Photo);
 
 
 		//Todo: Enforce uniqueness

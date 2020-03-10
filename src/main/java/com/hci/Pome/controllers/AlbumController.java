@@ -38,14 +38,6 @@ public class AlbumController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/refresh", method = RequestMethod.GET)
-    public ResponseEntity<List<Photo>> refreshPhotos()
-    {
-        List<Photo> list = photoService.getAllPhotos();
-
-        return new ResponseEntity<List<Photo>>(list, new HttpHeaders(), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "UploadPhoto", method = RequestMethod.POST)
     public void uploadPhoto(@RequestBody String photoDetails) {
 
