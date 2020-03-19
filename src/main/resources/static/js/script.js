@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
     const wrapper = document.getElementById('myTags');
 
+    //Adds a listener to the myTags element to enable and disable tags and in turn display or hide pictures.
     wrapper.addEventListener('click', (event) => {
       const isButton = event.target.nodeName === 'BUTTON';
       if (isButton) {
@@ -47,6 +48,7 @@ $( document ).ready(function() {
 
     const edit = document.getElementById('edit');
 
+    //Allows "edit mode" to be enabled and disabled by clicking the edit button
     edit.addEventListener('click', event => {
         edit.classList.toggle("btn-default");
         edit.classList.toggle("btn-info");
@@ -71,6 +73,7 @@ $( document ).ready(function() {
     const submitTags = document.getElementById('submitTags');
 
 
+    //Displays the edit modal if an image is clicked with edit mode enabled.
     result.addEventListener('click', event => {
 
         const isImage = event.target.nodeName === 'IMG';
@@ -85,6 +88,7 @@ $( document ).ready(function() {
         }
     });
 
+    //Allows for adding tags, removes any unused tags from the page.
     submitTags.onclick = function() {
         var selectedImage = document.getElementsByClassName("selectedImage")[0].getElementsByTagName('img')[0];
 
@@ -127,6 +131,7 @@ $( document ).ready(function() {
         selectedImage.classList.add('thumbnail');
     }
 
+    //Removes the image and unused tags if the remove image button is clicked within the edit modal
     document.getElementById('removeImage').onclick = function() {
         var selectedImageColumn = document.getElementsByClassName("selectedImage")[0];
         var selectedImage = document.getElementsByClassName("selectedImage")[0].getElementsByTagName('img')[0];
@@ -161,6 +166,7 @@ $( document ).ready(function() {
         modal.style.display = "none";
     }
 
+    //Allows for closing the modal by clicking the x icon
     document.getElementById('close').onclick = function() {
       var selectedImage = document.getElementsByClassName("selectedImage")[0];
       selectedImage.classList.toggle("selectedImage");
@@ -168,6 +174,7 @@ $( document ).ready(function() {
       modal.style.display = "none";
     }
 
+    //Allows for closing the modal by clicking elsewhere on the window
     window.onclick = function(event) {
       if (event.target == modal) {
         var selectedImage = document.getElementsByClassName("selectedImage")[0];
@@ -184,7 +191,7 @@ $( document ).ready(function() {
 
 
 
-
+//Adds tags as buttons within the myTags element. Default is for tags to be enabled when added.
 function add(tag) {
          const tagsContainer = document.getElementById("myTags");
 
@@ -209,6 +216,7 @@ function add(tag) {
          }
 }
 
+//Allows for images to be uploaded
 window.onload = function iterator() {
   // Upload, tag, and display functions
   // Check File API support

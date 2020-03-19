@@ -15,6 +15,10 @@ import org.springframework.web.servlet.View;
 
 import java.util.List;
 
+/**
+ * Handles requests for various functionalities associated with the album view. Populates the album view with initial
+ * data from the in memory database
+ */
 @Controller
 public class AlbumController {
 
@@ -27,6 +31,8 @@ public class AlbumController {
         ModelAndView modelAndView = new ModelAndView();
 
         List<Photo> photos = photoService.getAllPhotos();
+
+        //Alters the names of each photo before adding them to the model, allows for easier use in templating.
         for(Photo photo : photos)
         {
             photo.setPhotoName("images/" + photo.getPhotoName());

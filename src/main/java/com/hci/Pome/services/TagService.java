@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A service which allows for retrieving, creating, and deleting Tag objects from the database.
+ */
 @Service
 public class TagService {
 

@@ -241,6 +241,7 @@
     <div class="row border">
         <div class="col-sm-2">
 
+            <!-- Thymeleaf templating for the initial tags within the database -->
             <span id="myTags">
                 <span th:each="photo : ${photos}">
                     <span th:each="tag : ${photo.getTags()}">
@@ -311,8 +312,7 @@
                 </div>
             </div>
 
-
-
+            <!-- Thymeleaf templating for the initial photos contained within the database -->
             <form id="post-form" class="post-form" method="post">
                 <div class="row" id="result">
                     <div class="column" th:each="photo : ${photos}">

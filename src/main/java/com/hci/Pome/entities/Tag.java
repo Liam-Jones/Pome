@@ -3,6 +3,11 @@ package com.hci.Pome.entities;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Creates the tag table and allows for creation of Tag objects which can be stored and and extracted from this
+ * table
+ */
+
 @Entity
 @Table(name = "Tag", schema = "testdb", uniqueConstraints = {
         @UniqueConstraint(columnNames = "TagName", name = "uniqueNameConstraint")})
@@ -15,6 +20,8 @@ public class Tag {
     @Column(name = "TagName", unique = true)
     private String tagName;
 
+    //Describes the Tag side of the many-to-many relationship, the tags will be mapped by the "tags" attribute of each
+    //Photo
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "tags")
     private List<Photo> photos;
 

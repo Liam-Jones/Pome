@@ -3,6 +3,11 @@ package com.hci.Pome.entities;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Creates the photo table and allows for creation of Photo objects which can be stored and and extracted from this
+ * table
+ */
+
 @Entity
 @Table(name = "Photo", schema = "testdb", uniqueConstraints = {
         @UniqueConstraint(columnNames = "PhotoName", name = "uniqueNameConstraint")})
@@ -15,6 +20,7 @@ public class Photo {
     @Column(name = "PhotoName")
     private String photoName;
 
+    // Creates the junction table between Photos and Tags.
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
       name = "PhotoTag", schema = "testdb",
@@ -59,6 +65,11 @@ public class Photo {
         return tags;
     }
 
+    /**
+     * A method which allows Thymeleaf to more easily convert the tags of a photo to classes within the view.
+     *
+     * @return A string of space separated classes to be used in the view.
+     */
     public String tagsToClasses()
     {
         StringBuffer sb = new StringBuffer();

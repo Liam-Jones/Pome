@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Registers a servlet for the h2 console and adds resource handling for webjars
+ */
 public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     ServletRegistrationBean h2servletRegistration() {

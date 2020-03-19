@@ -12,6 +12,9 @@ import com.hci.Pome.repositories.PhotoRepository;
 
 import com.hci.Pome.exceptions.RecordNotFoundException;
 
+/**
+ * A service which allows for retrieving, creating, and deleting Photo objects from the database.
+ */
 @Service
 public class PhotoService {
 

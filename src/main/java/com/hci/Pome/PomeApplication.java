@@ -12,6 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Runs the Spring application.
+ */
 @SpringBootApplication
 public class PomeApplication implements CommandLineRunner{
 
@@ -25,6 +28,13 @@ public class PomeApplication implements CommandLineRunner{
 		SpringApplication.run(PomeApplication.class, args);
 	}
 
+	/**
+	 * Since an in memory database is being used, this method populates the database with some initial data. With more
+	 * time, a file based database would have been used, and this method would not be required.
+	 *
+	 * @param args
+	 * @throws Exception
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 		List<Tag> dogeTags = Arrays.asList(new Tag("Doge"));
