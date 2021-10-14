@@ -1,7 +1,5 @@
 # Pome
 
-![unknown](https://user-images.githubusercontent.com/56089739/82768229-19e95000-9e04-11ea-8040-61bd8aeeef03.png)
-
 POME (Picture Organization Made Easy) is a Web App that organizes images with tags as a way for users to easily store and locate their media.
 
 COMP 3583 - HCI project 
